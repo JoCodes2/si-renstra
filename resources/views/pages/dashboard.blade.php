@@ -1,4 +1,11 @@
 @extends('Layouts.master')
 @section('content')
-    <h1>Apakah Anda Sudah Siap Meninggal?,,, Silahkan Sholat!!!!</h1>
+   <div>
+        <x-base-header headerTitle="Profil Perusahaan" headerIcon="fas fa-box">
+        </x-base-header>
+        <x-base-body>
+            <x-company-profile.vision-table></x-company-profile.vision-table>
+            <x-company-profile.mision-profile></x-company-profile.mision-profile>
+        </x-base-body>
+    </div>
 @endsection
