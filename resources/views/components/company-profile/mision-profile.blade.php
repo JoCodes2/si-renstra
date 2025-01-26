@@ -1,18 +1,14 @@
 <div>
     <h1 class="text-center fw-bold py-2 bg-info text-white">MISI ORGANISASI</h1>
     <div class="card p-3">
-        <table class="table table-bordered" id="visionCompany">
-            <!-- Bagian Header -->
+        <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
                     <th colspan="2" class="text-center" style="height: 10px;">Jawab Pertanyaan di Bawah Ini</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td id="question"></td>
-                    <td id="answer"></td>
-                </tr>
+            <tbody id="misionsCompany">
+                {{-- looping for data vision company --}}
             </tbody>
             <tfoot>
                 <tr>

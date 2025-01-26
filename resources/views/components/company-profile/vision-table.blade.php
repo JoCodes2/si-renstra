@@ -1,18 +1,15 @@
 <div>
     <h1 class="text-center fw-bold pb-2 bg-info text-white">VISI ORGANISASI</h1>
     <div class="card p-3">
-        <table class="table table-bordered" id="visionCompany">
+        <table class="table table-bordered">
             <!-- Bagian Header -->
             <thead class="table-light">
                 <tr>
                     <th colspan="2" class="text-center" style="height: 10px">Jawab Pertanyaan di Bawah Ini</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td id="question"></td>
-                    <td id="answer"></td>
-                </tr>
+            <tbody id="visionCompany">
+
             </tbody>
             <tfoot>
                 <tr>

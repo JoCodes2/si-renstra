@@ -8,4 +8,6 @@
             <x-company-profile.mision-profile></x-company-profile.mision-profile>
         </x-base-body>
     </div>
+  <script type="module" src="{{ asset('js/company-profile/company-profile.controller.js') }}"></script>
 @endsection
+

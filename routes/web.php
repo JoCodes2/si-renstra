@@ -3,9 +3,6 @@
 use App\Http\Controllers\CMS\CompanyProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-});
 
 Route::prefix('v1')->group(function () {
     // Routes company-profile

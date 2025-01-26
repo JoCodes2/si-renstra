@@ -11,9 +11,6 @@
     <title>sps</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     @include('Layouts.style')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
-
 </head>
 
 <body>
@@ -33,7 +30,7 @@
         </div>
     </div>
     @include('Layouts.script')
-    @yield('script')
+    @yield('scripts')
 </body>
 
 </html>
