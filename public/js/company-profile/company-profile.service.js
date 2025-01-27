@@ -12,32 +12,130 @@ class companyProfileService {
             });
         });
     }
-
-    async getAllDataByCategory(category) {
+    async getAllDataByCategory(category, targetTable) {
         try {
             const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/${category}`, 'GET');
             console.log(responseData);
 
-            if (responseData.code === 200) {
-                let tableBody = '';
+            let tableBody = '';
 
+            if (responseData.code === 200 && responseData.data.length > 0) {
                 responseData.data.forEach((item) => {
+                    const answerText = item.answer ? item.answer : 'Berikan jawaban Anda...';
                     tableBody += `
-                        <tr>
-                            <td>${item.question}</td>
-                            <td>${item.answer}</td>
-                        </tr>
-                    `;
+                <tr data-id="${item.id}">
+                    <td>${item.question}</td>
+                    <td>${answerText}</td>
+                    <td class="text-center">
+                        <button class="btn btn-outline-primary btn-sm edit-modal mr-1" data-id="${item.id}" style="font-size: 12px; padding: 2px 6px;">
+                            Jawab
+                        </button>
+                        <button type="button" class="delete-confirm btn btn-outline-danger btn-sm" data-id="${item.id}" style="font-size: 12px; padding: 2px 6px;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>`;
                 });
-
-                $("#visionCompany").html(tableBody);
             } else {
-                console.error("Invalid response data:", responseData);
+                tableBody = `
+            <tr>
+                <td colspan="3" class="text-center">Tidak ada data tersedia.</td>
+            </tr>`;
             }
+
+            const $table = $(`#${targetTable}`);
+            const $tableBody = $table.find('tbody');
+
+            $tableBody.html(tableBody);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     }
+
+
+    async upsertData(e, checkingEdit) {
+        let submitButton = $(e.target).find(':submit');
+        try {
+            const formData = new FormData(e.target);
+
+            if (checkingEdit()) {
+                const id = $('#id').val();
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/update/${id}`, 'POST', formData);
+
+                if (responseData.code === 200) {
+                    successAlert().then(() => {
+                        realoadBrowser();
+                        $('#companyProfileModal').modal('hide');
+                    });
+                } else if (responseData.code === 422) {
+                    warningAlert();
+                } else {
+                    errorAlert();
+                }
+            } else {
+                submitButton.attr('disabled', true);
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/create`, 'POST', formData);
+                console.log(responseData);
+
+                if (responseData.code === 200) {
+                    successAlert().then(() => {
+                        realoadBrowser();
+                        $('#companyProfileModal').modal('hide');
+                    });
+                } else if (responseData.code === 422) {
+                    warningAlert();
+                } else {
+                    errorAlert();
+                }
+                submitButton.attr('disabled', false);
+            }
+        } catch (error) {
+            submitButton.attr('disabled', false);
+            console.error('Error:', error);
+            errorAlert();
+        }
+    }
+
+    async getDataById(id, checkingEdit) {
+        try {
+            const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/get/${id}`, 'GET');
+            $('#id').val(responseData.data.id);
+            $('#category').val(responseData.data.category);
+            $('#question').val(responseData.data.question);
+            $('#questionShow').val(responseData.data.question);
+            $('#answer').val(responseData.data.answer || '').prop('disabled', false);
+
+            $('#upsertData').validate().resetForm();
+            $('#questionForm').hide(true);
+            $('#questionText').show(true);
+            $('#companyProfileModal').modal('show');
+            checkingEdit();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+    async deleteData(id) {
+        try {
+            const result = await confirmDeleteAlert();
+            if (result.isConfirmed) {
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/delete/${id}`, 'DELETE');
+                console.log(responseData);
+                if (responseData.code === 200) {
+                    await successAlert().then(() => {
+                        realoadBrowser();
+                    });
+                } else {
+                    errorAlert();
+                }
+            }
+        } catch (error) {
+            errorAlert();
+        }
+    }
+
 }
 
 export default companyProfileService;

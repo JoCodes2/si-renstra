@@ -17,7 +17,7 @@ class CompanyProfileRequest extends FormRequest
         return [
             'category' => 'required',
             'question' => 'required',
-            'answer' => 'required'
+            'answer' => $this->is('v1/company-profile/update/*') ? 'required' : 'nullable',
         ];
     }
 
