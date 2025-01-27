@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class visionTable extends Component
+class baseTable extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class visionTable extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.company-profile.vision-table');
+        return view('components.company-profile.base-table');
     }
 }
