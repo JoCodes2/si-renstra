@@ -21,10 +21,18 @@
                 </div>
             </div>
             <ul class="nav nav-primary">
-                <li class="nav-item {{ request()->is('/*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                     <a href="{{ url('/') }}">
                         <i class="fas fa-home"></i>
                         <p>Profil Organisasi</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-primary">
+                <li class="nav-item {{ request()->is('/swot') ? 'active' : '' }}">
+                    <a href="{{ url('/swot') }}">
+                        <i class="fas fa-home"></i>
+                        <p>SWOT</p>
                     </a>
                 </li>
             </ul>
