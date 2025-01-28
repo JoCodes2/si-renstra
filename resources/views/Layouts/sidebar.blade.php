@@ -29,10 +29,18 @@
                 </li>
             </ul>
             <ul class="nav nav-primary">
-                <li class="nav-item {{ request()->is('/swot') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('swot*') ? 'active' : '' }}">
                     <a href="{{ url('/swot') }}">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-crop-alt"></i>
                         <p>SWOT</p>
+                    </a>
+                </li>
+            </ul>
+             <ul class="nav nav-primary">
+                <li class="nav-item {{ request()->is('gap*') ? 'active' : '' }}">
+                    <a href="{{ url('/gap') }}">
+                        <i class="fas fa-layer-group"></i>
+                        <p>GAP</p>
                     </a>
                 </li>
             </ul>
