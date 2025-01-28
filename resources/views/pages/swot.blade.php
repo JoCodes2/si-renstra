@@ -34,34 +34,39 @@
             </table>
             <div class="row">
                 <div class="col-md-6">
-                    <x-swott.base-table-swot baseTitle="Srength" baseStyle="text-center fw-bold py-2 bg-danger text-white"
+                    <x-swott.base-table-swot baseTitle="Strength" buttonId='strengthBtn'
+                        baseStyle="text-center fw-bold py-2 bg-danger text-white"
                         baseDeskripsiStyle="text-center fw-bold py-2 bg-dark text-white"
                         baseDeskripsi="Apa keunggulan
                                     bisnis dibandingkan kompetitor lain? Aspek apa yang paling dihargai oleh pelanggan
                                     tentang merek?"
-                        initIdTable="srengthTable"></x-swott.base-table-swot>
+                        initIdTable="strengthTable"></x-swott.base-table-swot>
                 </div>
                 <div class="col-md-6">
-                    <x-swott.base-table-swot baseTitle="Weaknesses"
+                    <x-swott.base-table-swot baseTitle="Weaknesses" buttonId='strengthBtn'
                         baseStyle="text-center fw-bold py-2 bg-warning text-white"
                         baseDeskripsi="Faktor-faktor
                                     eksternal yang berpotensi memberikan keunggulan kompetitif bagi perusahaan."
                         initIdTable="weaknessesTable"></x-swott.base-table-swot>
                 </div>
                 <div class="col-md-6">
-                    <x-swott.base-table-swot baseTitle="Opportunity" baseStyle="text-center fw-bold py-2 bg-info text-white"
+                    <x-swott.base-table-swot baseTitle="Opportunity" buttonId='strengthBtn'
+                        baseStyle="text-center fw-bold py-2 bg-info text-white"
                         baseDeskripsi="Faktor-faktor
                                     eksternal yang berpotensi memberikan keunggulan kompetitif bagi perusahaan."
                         initIdTable="opportunityTable"></x-swott.base-table-swot>
                 </div>
                 <div class="col-md-6">
-                    <x-swott.base-table-swot baseTitle="Threat" baseStyle="text-center fw-bold py-2 bg-success text-white"
+                    <x-swott.base-table-swot baseTitle="Threat" buttonId='strengthBtn'
+                        baseStyle="text-center fw-bold py-2 bg-success text-white"
                         baseDeskripsi="Kekhawatiran apa
                                     yang dimiliki perusahaan saat ini? Apakah ada tantangan yang dapat berisiko
                                     membahayakan rencana?"
-                        initIdTable="theatTable"></x-swott.base-table-swot>
+                        initIdTable="threatTable"></x-swott.base-table-swot>
                 </div>
             </div>
         </x-base-body>
     </div>
+    <x-swott.form-data></x-swott.form-data>
+    <script type="module" src="{{ asset('js/swot/swot.controller.js') }}"></script>
 @endsection
