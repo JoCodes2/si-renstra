@@ -1,155 +1,173 @@
 @extends('Layouts.master')
 
 @section('content')
-    <div>
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h3 class="m-0 font-weight-bold"><i class="fa-solid fa-book pr-2"></i> SWOT Analysis</h3>
-        </div>
-
-        <table class="table d-flex justify-content-center align-items-center px-5">
-            <tbody>
-                <tr>
-                    <th scope="row" style="background-color: #a2c7ff; width: 120px;color: #0D7FD3"
-                        class="justify-content-center text-center">What</th>
-                    <td class="text-center">Alat perencanaan strategis yang membantu bisnis mengidentifikasi kekuatan dan
-                        kelemahan
-                        internal, serta peluang dan ancaman eksternal yang dapat memengaruhi inisiatif pertumbuhan
-                        dan pencapaian tujuannya.</td>
-                </tr>
-                <tr>
-                    <th scope="row" style="width: 120px; background-color: #FBE2D5;color: #0D7FD3"
-                        class="justify-content-center text-center">How</th>
-                    <td class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nulla tempora
-                        autem? Aliquam odit
-                        nihil facilis eligendi,
-                        doloremque magni ut reprehenderit libero maxime molestiae, delectus, deserunt quis aperiam
-                        veniam non!</td>
-                </tr>
-                <tr>
-                    <th scope="row" style="width: 120px; background-color: #C0F1C8;color: #0D7FD3"
-                        class="justify-content-center text-center">Why</th>
-                    <td class="text-center"> Memberikan pandangan seimbang tentang kondisi internal organisasi dengan
-                        lingkungan bisnis
-                        beroperasi</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Display SWOT tables (Strength, Weakness, Opportunity, Threat) -->
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card" id="strenght-card">
-                    <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
-                        <span>Strength</span>
-                        <button class="btn btn-light btn-sm" id="add-strenght">+</button>
-                    </div>
-                    <table class="table table-bordered text-center" id="strenght-table">
-                        <thead class="bg-dark text-white">
-                            <tr>
-                                <th>#</th>
-                                <th colspan="2">Apa keunggulan bisnis dibandingkan kompetitor lain? Aspek apa yang paling
-                                    dihargai oleh
-                                    pelanggan tentang merk?</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="m-1 p-1">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h3 class="m-0 font-weight-bold"><i class="fas fa-box pr-2"></i> SWOT Analysis</h3>
                 </div>
-            </div>
 
+                <table class="table d-flex justify-content-center align-items-center px-5">
+                    <tbody>
+                        <tr>
+                            <th scope="row" style="background-color: #a2c7ff; width: 120px;color: #0D7FD3"
+                                class="justify-content-center text-center">What</th>
+                            <td class="text-center">Alat perencanaan strategis yang membantu bisnis mengidentifikasi
+                                kekuatan dan
+                                kelemahan
+                                internal, serta peluang dan ancaman eksternal yang dapat memengaruhi inisiatif pertumbuhan
+                                dan pencapaian tujuannya.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 120px; background-color: #FBE2D5;color: #0D7FD3"
+                                class="justify-content-center text-center">How</th>
+                            <td class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nulla
+                                tempora
+                                autem? Aliquam odit
+                                nihil facilis eligendi,
+                                doloremque magni ut reprehenderit libero maxime molestiae, delectus, deserunt quis aperiam
+                                veniam non!</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 120px; background-color: #C0F1C8;color: #0D7FD3"
+                                class="justify-content-center text-center">Why</th>
+                            <td class="text-center"> Memberikan pandangan seimbang tentang kondisi internal organisasi
+                                dengan
+                                lingkungan bisnis
+                                beroperasi</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="col-md-6">
-                <div class="card" id="weakness-card">
-                    <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
-                        <span>Weakness</span>
-                        <button class="btn btn-light btn-sm" id="add-weakness">+</button>
-                    </div>
-                    <table class="table table-bordered text-center" id="weakness-table">
-                        <thead class="bg-dark text-white">
-                            <tr>
-                                <th>#</th>
-                                <th colspan="2">Bagian apa yang bisa ditingkatkan? Hambatan apa yang menghalangi untuk
-                                    mencapai tujuan?
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <!-- Opportunity -->
-            <div class="col-md-6">
-                <div class="card" id="opportinity-card">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
-                        id="opportinity-header">
-                        <span id="opportinity-title">opportinity</span>
-                        <button class="btn btn-light btn-sm" id="add-opportinity">+</button>
-                    </div>
-                    <table class="table table-bordered text-center" id="opportinity-table">
-                        <thead class="bg-dark text-white">
-                            <tr>
-                                <th>#</th>
-                                <th colspan="2">Faktor-faktor eksternal yang berpotensi memberikan keunggulan kompetitif
-                                    bagi
-                                    perusahaan.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Threat -->
-            <div class="col-md-6">
-                <div class="card" id="threat-card">
-                    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center"
-                        id="threat-header">
-                        <span id="threat-title">Threat</span>
-                        <button class="btn btn-light btn-sm tambah" id="add-threat">+</button>
-                    </div>
-                    <table class="table table-bordered text-center" id="threat-table">
-                        <thead class="bg-dark text-white">
-                            <tr>
-                                <th>#</th>
-                                <th colspan="2">Kekhawatiran apa yang dimiliki perusahaan saat ini? Apakah ada tantangan
-                                    yang dapat
-                                    berisiko membahayakan rencana?</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Form to Add SWOT Data -->
-        <div class="modal fade" id="formDataModal" tabindex="-1" aria-labelledby="formDataModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="formDataModalLabel">Tambah Data SWOT</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="category" name="category">
-                        <div class="form-group">
-                            <label for="description">Deskripsi</label>
-                            <input type="text" class="form-control" id="description" placeholder="Masukkan deskripsi">
-                            <div id="description-error" class="text-danger"></div>
+                <!-- Display SWOT tables (Strength, Weakness, Opportunity, Threat) -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card" id="strenght-card">
+                            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                                <span>Strength</span>
+                                <button class="btn btn-light btn-sm tambah" id="add-strenght">+</button>
+                            </div>
+                            <table class="table table-bordered text-center" id="strenght-table">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th colspan="2">Apa keunggulan bisnis dibandingkan kompetitor lain? Aspek apa
+                                            yang
+                                            paling
+                                            dihargai oleh
+                                            pelanggan tentang merk?</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="button" id="simpanData" class="btn btn-primary">Simpan</button>
+
+
+                    <div class="col-md-6">
+                        <div class="card" id="weakness-card">
+                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                                <span>Weakness</span>
+                                <button class="btn btn-light btn-sm tambah" id="add-weakness">+</button>
+                            </div>
+                            <table class="table table-bordered text-center" id="weakness-table">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th colspan="2">Bagian apa yang bisa ditingkatkan? Hambatan apa yang menghalangi
+                                            untuk
+                                            mencapai tujuan?
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <!-- Opportunity -->
+                    <div class="col-md-6">
+                        <div class="card" id="opportinity-card">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+                                id="opportinity-header">
+                                <span id="opportinity-title">opportinity</span>
+                                <button class="btn btn-light btn-sm tambah" id="add-opportinity">+</button>
+                            </div>
+                            <table class="table table-bordered text-center" id="opportinity-table">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th colspan="2">Faktor-faktor eksternal yang berpotensi memberikan keunggulan
+                                            kompetitif
+                                            bagi
+                                            perusahaan.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Threat -->
+                    <div class="col-md-6">
+                        <div class="card" id="threat-card">
+                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center"
+                                id="threat-header">
+                                <span id="threat-title">Threat</span>
+                                <button class="btn btn-light btn-sm tambah" id="add-threat">+</button>
+                            </div>
+                            <table class="table table-bordered text-center" id="threat-table">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th colspan="2">Kekhawatiran apa yang dimiliki perusahaan saat ini? Apakah ada
+                                            tantangan
+                                            yang dapat
+                                            berisiko membahayakan rencana?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Form to Add SWOT Data -->
+                <div class="modal fade" id="formDataModal" tabindex="-1" aria-labelledby="formDataModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="formDataModalLabel">Tambah Data SWOT</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formData" method="POST">
+                                    @csrf
+                                    <input type="hidden" id="id" name="id">
+                                    <input type="hidden" id="category" name="category">
+                                    <div class="form-group">
+                                        <label for="description">Deskripsi</label>
+                                        <input type="text" class="form-control" id="description" name="description"
+                                            placeholder="Masukkan deskripsi">
+                                        <small id="description-error" class="text-danger"></small>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                <button type="button" id="simpanData" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,10 +199,10 @@
                             <td>${index + 1}</td>
                             <td>${item.description}</td>
                             <td>
-                                <button class="btn btn-outline-primary btn-sm edit-btn" data-category="${category}" data-id="${item.id}" data-description="${item.description}">
+                                <button class="btn btn-outline-primary btn-sm edit-btn"  data-id="${item.id}" >
                                     <i class="fa fa-pencil-alt"></i>
                                 </button>
-                                <button class="btn btn-outline-danger btn-sm delete-confirm" data-category="${category}" data-id="${item.id}">
+                                <button class="btn btn-outline-danger btn-sm delete-confirm"  data-id="${item.id}">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -212,20 +230,21 @@
                 $('#category').val(category);
                 $('#description').val('');
                 $('#simpanData').show();
-                $('#updateData').hide();
+                $('.text-danger').text('');
+                $('#id').val('');
                 $('#formDataModal').modal('show');
             });
 
             // Save new SWOT data
             $('#simpanData').click(function(e) {
                 e.preventDefault();
-                let category = $('#category').val();
-                let description = $('#description').val();
+                let id = $('#id').val();
 
-                if (!description) {
-                    $('#description-error').text('Deskripsi tidak boleh kosong');
-                    return;
-                }
+                let formData = new FormData($('#formData')[0]);
+
+                let url = id ? `/v1/swot/update/${id}` : '/v1/swot/create';
+
+                let method = 'POST';
 
                 Swal.fire({
                     title: 'Loading...',
@@ -233,85 +252,57 @@
                     allowOutsideClick: false,
                     didOpen: () => Swal.showLoading()
                 });
-
                 $.ajax({
-                    type: 'POST',
-                    url: '/v1/swot/create',
-                    data: {
-                        category: category,
-                        description: description
-                    },
+                    type: method,
+                    url: url,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
+                        console.log(response);
+
                         Swal.close();
-                        if (response.code === 200) {
-                            successAlert('Data berhasil disimpan!');
-                            $('#formDataModal').modal('hide');
+                        if (response.code === 422) {
+                            let errors = response.errors;
+                            $.each(errors, function(key, value) {
+                                $('#' + key + '-error').text(value[0]);
+                            });
+                        } else if (response.code === 200) {
+                            successAlert();
+                            $('#formDataModal').modal(
+                                'hide');
                             window.location.reload();
                         } else {
-                            errorAlert('Terjadi kesalahan!');
+                            errorAlert();
                         }
                     },
-                    error: function() {
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
                         Swal.close();
-                        errorAlert('Terjadi kesalahan saat menyimpan data!');
                     }
                 });
+
             });
 
             // 📝 EDIT DATA SWOT
             $(document).on('click', '.edit-btn', function() {
                 let id = $(this).data('id');
-                let category = $(this).data('category');
-                let description = $(this).data('description');
-
-                $('#formDataModalLabel').text('Edit ' + category.charAt(0).toUpperCase() + category.slice(
-                    1));
-                $('#category').val(category);
-                $('#description').val(description);
-                $('#updateData').show().data('id', id);
-                $('#formDataModal').modal('show');
-            });
-
-            // UPDATE SWOT DATA
-            $('#updateData').click(function(e) {
-                e.preventDefault();
-                let id = $(this).data('id');
-                let category = $('#category').val();
-                let description = $('#description').val();
-
-                if (!description) {
-                    $('#description-error').text('Deskripsi tidak boleh kosong');
-                    return;
-                }
-
-                Swal.fire({
-                    title: 'Loading...',
-                    text: 'Please wait...',
-                    allowOutsideClick: false,
-                    didOpen: () => Swal.showLoading()
-                });
-
                 $.ajax({
-                    type: 'PUT',
-                    url: `/v1/swot/update/${id}`,
-                    data: {
-                        description: description
-                    },
+                    url: `/v1/swot/get/${id}`,
+                    method: "GET",
+                    dataType: "json",
                     success: function(response) {
-                        Swal.close();
-                        if (response.code === 200) {
-                            successAlert('Data berhasil diperbarui!');
-                            $('#formDataModal').modal('hide');
-                            window.location.reload();
-                        } else {
-                            errorAlert('Gagal memperbarui data!');
-                        }
+                        $('#id').val(id);
+                        $('#category').val(response.data.category);
+                        $('#description').val(response.data.description);
+                        $('#formDataModal').modal('show');
+                        $('.text-danger').text('');
                     },
-                    error: function() {
-                        Swal.close();
-                        errorAlert('Terjadi kesalahan saat memperbarui data!');
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching data for edit:', error);
                     }
                 });
+
             });
 
             // 🗑️ DELETE DATA SWOT
@@ -352,6 +343,8 @@
                     }
                 });
             });
+
+
 
             // SUCCESS & ERROR ALERT FUNCTIONS
             function successAlert(message) {
