@@ -29,9 +29,9 @@
                 </li>
             </ul>
             <ul class="nav nav-primary">
-                <li class="nav-item {{ request()->is('/swot') ? 'active' : '' }}">
-                    <a href="{{ url('/swot') }}">
-                        <i class="fas fa-home"></i>
+                <li class="nav-item {{ request()->is('/swott') ? 'active' : '' }}">
+                    <a href="{{ url('/swott') }}">
+                        <i class="fas fa-file"></i>
                         <p>SWOT</p>
                     </a>
                 </li>

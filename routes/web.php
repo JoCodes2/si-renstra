@@ -12,6 +12,10 @@ Route::get('/swot', function () {
     return view('pages.swot');
 });
 
+Route::get('/swott', function () {
+    return view('admin.swot');
+});
+
 Route::prefix('v1')->group(function () {
     // Routes company-profile
     Route::prefix('company-profile')->controller(CompanyProfileController::class)->group(function () {

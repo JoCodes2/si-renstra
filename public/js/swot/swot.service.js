@@ -12,6 +12,7 @@ class swotService {
             });
         });
     }
+
     async getAllDataByCategory(category, targetTable) {
         try {
             const responseData = await this.ajaxRequest(`${appUrl}/v1/swot/${category}`, 'GET');
@@ -20,7 +21,7 @@ class swotService {
             let tableBody = '';
 
             if (responseData.code === 200 && responseData.data.length > 0) {
-                responseData.data.forEach((item,index) => {
+                responseData.data.forEach((item, index) => {
                     tableBody += `
                 <tr data-id="${item.id}">
                     <td>${index + 1}</td>
@@ -38,7 +39,7 @@ class swotService {
             } else {
                 tableBody = `
             <tr>
-                <td colspan="3" class="text-center">Writing Here!!!....</td>
+                <td colspan="3" class="text-center">No Data Found!</td>
             </tr>`;
             }
 
@@ -51,90 +52,54 @@ class swotService {
         }
     }
 
+    async upsertData(e, checkingEdit) {
+        let submitButton = $(e.target).find(':submit');
+        try {
+            const formData = new FormData(e.target);
 
-    // async upsertData(e, checkingEdit) {
-    //     let submitButton = $(e.target).find(':submit');
-    //     try {
-    //         const formData = new FormData(e.target);
+            // Validasi manual untuk memastikan field `category` ada
+            if (!formData.has('category') || !formData.get('category')) {
+                warningAlert('Category is required!');
+                return;
+            }
 
-    //         if (checkingEdit()) {
-    //             const id = $('#id').val();
-    //             const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/update/${id}`, 'POST', formData);
+            if (checkingEdit()) {
+                const id = $('#id').val();
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/swot/update/${id}`, 'POST', formData);
 
-    //             if (responseData.code === 200) {
-    //                 successAlert().then(() => {
-    //                     realoadBrowser();
-    //                     $('#companyProfileModal').modal('hide');
-    //                 });
-    //             } else if (responseData.code === 422) {
-    //                 warningAlert();
-    //             } else {
-    //                 errorAlert();
-    //             }
-    //         } else {
-    //             submitButton.attr('disabled', true);
-    //             const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/create`, 'POST', formData);
-    //             console.log(responseData);
+                if (responseData.code === 200) {
+                    successAlert().then(() => {
+                        realoadBrowser();
+                        $('#swotModal').modal('hide');
+                    });
+                } else if (responseData.code === 422) {
+                    warningAlert('Validation error: Please check your inputs.');
+                } else {
+                    errorAlert();
+                }
+            } else {
+                submitButton.attr('disabled', true);
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/swot/create`, 'POST', formData);
+                console.log(responseData);
 
-    //             if (responseData.code === 200) {
-    //                 successAlert().then(() => {
-    //                     realoadBrowser();
-    //                     $('#companyProfileModal').modal('hide');
-    //                 });
-    //             } else if (responseData.code === 422) {
-    //                 warningAlert();
-    //             } else {
-    //                 errorAlert();
-    //             }
-    //             submitButton.attr('disabled', false);
-    //         }
-    //     } catch (error) {
-    //         submitButton.attr('disabled', false);
-    //         console.error('Error:', error);
-    //         errorAlert();
-    //     }
-    // }
-
-    // async getDataById(id, checkingEdit) {
-    //     try {
-    //         const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/get/${id}`, 'GET');
-    //         $('#id').val(responseData.data.id);
-    //         $('#category').val(responseData.data.category);
-    //         $('#question').val(responseData.data.question);
-    //         $('#questionShow').val(responseData.data.question);
-    //         $('#answer').val(responseData.data.answer || '').prop('disabled', false);
-
-    //         $('#upsertData').validate().resetForm();
-    //         $('#questionForm').hide(true);
-    //         $('#questionText').show(true);
-    //         $('#companyProfileModal').modal('show');
-    //         checkingEdit();
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
-
-
-    // async deleteData(id) {
-    //     try {
-    //         const result = await confirmDeleteAlert();
-    //         if (result.isConfirmed) {
-    //             const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/delete/${id}`, 'DELETE');
-    //             console.log(responseData);
-    //             if (responseData.code === 200) {
-    //                 await successAlert().then(() => {
-    //                     realoadBrowser();
-    //                 });
-    //             } else {
-    //                 errorAlert();
-    //             }
-    //         }
-    //     } catch (error) {
-    //         errorAlert();
-    //     }
-    // }
-
+                if (responseData.code === 200) {
+                    successAlert().then(() => {
+                        realoadBrowser();
+                        $('#swotModal').modal('hide');
+                    });
+                } else if (responseData.code === 422) {
+                    warningAlert('Validation error: Please check your inputs.');
+                } else {
+                    errorAlert();
+                }
+                submitButton.attr('disabled', false);
+            }
+        } catch (error) {
+            submitButton.attr('disabled', false);
+            console.error('Error:', error);
+            errorAlert();
+        }
+    }
 }
 
 export default swotService;

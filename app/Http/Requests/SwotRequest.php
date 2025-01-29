@@ -15,7 +15,7 @@ class SwotRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => 'required',
+            'category' => 'required|in:strenght,weakness,opportinity,threat',
             'description' => 'required'
         ];
     }
