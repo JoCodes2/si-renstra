@@ -97,32 +97,73 @@ class gapService {
         }
     }
 
-    async upsertData(e) {
-        e.preventDefault();
-        let submitButton = $(e.target).find(':submit');
+    async getDataById(id, checkingEdit) {
+        try {
+            const responseData = await this.ajaxRequest(`${appUrl}/v1/gap/get/${id}`, 'GET');
+            console.log(responseData);
+            const currentState = parseFloat(responseData.data.current_state);
+            const gapValue = parseFloat(responseData.data.gap);
 
+            const currentStateFormatted = isNaN(currentState) ? 0 : currentState.toFixed(0);
+            const gapFormatted = isNaN(gapValue) ? 0 : gapValue.toFixed(0);
+            const planingText = responseData.data.planing ? responseData.data.planing : 'please create your planing...';
+
+            $('#id').val(responseData.data.id);
+            $('#id_swot').val(responseData.data.id_swot);
+            $('#current_state').val(currentStateFormatted);
+            $('#gap').val(gapFormatted).prop('disabled', true);
+            $('#hidden_gap').val(gapFormatted);
+            $('#summernote').summernote('code', planingText);
+            $('#planing').val(planingText);
+            $('#upsertData').validate().resetForm();
+            $('#gapModal').modal('show');
+            checkingEdit();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    async upsertData(e, checkingEdit) {
+        let submitButton = $(e.target).find(':submit');
         try {
             const formData = new FormData(e.target);
-            submitButton.attr('disabled', true);
 
-            const responseData = await this.ajaxRequest(`${appUrl}/v1/gap/create`, 'POST', formData);
-            console.log(responseData);
+            if (checkingEdit()) {
+                const id = $('#id').val();
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/gap/update/${id}`, 'POST', formData);
 
-            if (responseData.code === 200) {
-                successAlert().then(() => {
-                    $('#gapModal').modal('hide');
-                    realoadBrowser();
-                });
-            } else if (responseData.code === 422) {
-                warningAlert();
+                if (responseData.code === 200) {
+                    successAlert().then(() => {
+                        realoadBrowser();
+                        $('#gapModal').modal('hide');
+                    });
+                } else if (responseData.code === 422) {
+                    warningAlert();
+                } else {
+                    errorAlert();
+                }
             } else {
-                errorAlert();
+                submitButton.attr('disabled', true);
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/gap/create`, 'POST', formData);
+                console.log(responseData);
+
+                if (responseData.code === 200) {
+                    successAlert().then(() => {
+                        realoadBrowser();
+                        $('#gapModal').modal('hide');
+                    });
+                } else if (responseData.code === 422) {
+                    warningAlert();
+                } else {
+                    errorAlert();
+                }
+                submitButton.attr('disabled', false);
             }
         } catch (error) {
+            submitButton.attr('disabled', false);
             console.error('Error:', error);
             errorAlert();
-        } finally {
-            submitButton.attr('disabled', false);
         }
     }
 

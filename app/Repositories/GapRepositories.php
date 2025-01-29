@@ -23,6 +23,7 @@ class GapRepositories implements GapInterfaces
         }
         return $this->success($data);
     }
+
     public function createData(GapRequest $request)
     {
         try {
@@ -32,6 +33,29 @@ class GapRepositories implements GapInterfaces
             $data->gap = $request->input('gap');
             $data->planing = $request->input('planing');
             $data->save();
+            return $this->success($data);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
+        }
+    }
+
+    public function getDataById($id)
+    {
+        $data = $this->gapModel::find($id);
+        if (!$data) {
+            return $this->dataNotFound();
+        }
+        return $this->success($data);
+    }
+
+    public function updateData(GapRequest $request, $id)
+    {
+        try {
+            $data = $this->gapModel::find($id);
+            if (!$data) {
+                return $this->dataNotFound();
+            }
+            $data->update($request->all());
             return $this->success($data);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);

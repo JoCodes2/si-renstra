@@ -38,6 +38,8 @@ Route::prefix('v1')->group(function () {
     // Routes gap
     Route::prefix('gap')->controller(GapController::class)->group(function () {
         Route::get('/', 'getAllData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
         Route::post('/create', 'createData');
         Route::delete('/delete/{id}', 'deleteData');
     });

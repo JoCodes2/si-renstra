@@ -68,12 +68,6 @@ $(document).ready(function () {
     $('#current_state').on('input', function () {
         let currentState = $(this).val();
         currentState = currentState.replace(/[^0-9]/g, '');
-        if (currentState !== '') {
-            let num = parseInt(currentState);
-            if (num < 1) num = 1;
-            if (num > 100) num = 100;
-            $(this).val(num);
-        }
 
         if (!isNaN(currentState) && currentState >= 1 && currentState <= 100) {
             let gapValue = (100 - currentState).toFixed(0);
@@ -87,14 +81,6 @@ $(document).ready(function () {
         }
 
         $(this).valid();
-    });
-
-    $('#current_state').on('blur', function () {
-        let val = $(this).val();
-        if (val === '' || isNaN(val) || val < 1 || val > 100) {
-            $(this).val(1);
-            $('#gap').val((100 - 1).toFixed(0));
-        }
     });
 
     $('#summernote').summernote({
@@ -120,7 +106,17 @@ $(document).ready(function () {
     });
 
     $('#upsertData').on('submit', async function (e) {
-        await gap.upsertData(e);
+        e.preventDefault();
+        const isEditMode = () => !!$('#id').val();
+        await gap.upsertData(e, isEditMode);
+    });
+    function checkingEdit() {
+        return $('#id').val() ? true : false;
+    }
+
+    $(document).on('click', '.edit-modal', function () {
+        const id = $(this).data('id');
+        gap.getDataById(id, checkingEdit);
     });
 
     $(document).on('click', '.delete-confirm', function () {

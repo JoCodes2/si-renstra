@@ -22,6 +22,14 @@ class GapController extends Controller
     {
         return $this->gapRepo->createData($request);
     }
+    public function getDataById($id)
+    {
+        return $this->gapRepo->getDataById($id);
+    }
+    public function updateData(GapRequest $request, $id)
+    {
+        return $this->gapRepo->updateData($request, $id);
+    }
     public function deleteData($id)
     {
         return $this->gapRepo->deleteData($id);
