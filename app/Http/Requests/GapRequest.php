@@ -26,7 +26,6 @@ class GapRequest extends FormRequest
         return [
             'id_swot' => 'required',
             'current_state' => 'required',
-            'gap' => 'required',
             'planing' => 'nullable'
         ];
     }

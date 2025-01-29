@@ -4,7 +4,7 @@
         <x-base-header headerTitle="GAP" headerIcon="fas fa-box">
         </x-base-header>
         <x-base-body>
-            <table class="table d-flex justify-content-center align-items-center px-5">
+            <table class="table d-flex justify-content-center align-items-center">
                 <tbody>
                     <tr>
                         <th scope="row" style="background-color: #a2c7ff; width: 120px;color: #0D7FD3"
@@ -26,6 +26,7 @@
             <x-gap.base-table tableId="gapTable"></x-gap.base-table>
         </x-base-body>
     </div>
+    <x-gap.form-data></x-gap.form-data>
      <script type="module" src="{{ asset('js/gap/gap.controller.js') }}"></script>
 
 @endsection
