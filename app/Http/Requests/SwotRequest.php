@@ -12,11 +12,22 @@ class SwotRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    public function authorize(): bool
+    {
+        return true;
+    }
     public function rules(): array
     {
         return [
             'category' => 'required',
             'description' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'category.required' => 'Category wajib diisi.',
+            'description.required' => 'Deskripsi wajib diisi.'
         ];
     }
 

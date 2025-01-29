@@ -9,8 +9,10 @@ Route::get('/', function () {
     return view('pages.dashboard');
 });
 
+
+
 Route::get('/swot', function () {
-    return view('pages.swot');
+    return view('admin.swot');
 });
 
 Route::get('/gap', function () {
