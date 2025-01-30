@@ -18,6 +18,11 @@ Route::get('/swot', function () {
 Route::get('/gap', function () {
     return view('pages.gap');
 });
+
+Route::get('/introduction', function () {
+    return view('admin.introduction');
+});
+
 Route::prefix('v1')->group(function () {
     // Routes company-profile
     Route::prefix('company-profile')->controller(CompanyProfileController::class)->group(function () {
