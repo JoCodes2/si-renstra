@@ -7,6 +7,8 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h3 class="m-0 font-weight-bold"><i class="fas fa-box pr-2"></i> SWOT Analysis</h3>
                 </div>
+                <h1 class="text-center fw-bold pb-2 bg-info text-white">VISI ORGANISASI</h1>
+
 
                 <table class="table d-flex justify-content-center align-items-center px-5">
                     <tbody>

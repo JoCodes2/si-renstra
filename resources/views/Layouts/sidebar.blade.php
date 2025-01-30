@@ -36,11 +36,19 @@
                     </a>
                 </li>
             </ul>
-             <ul class="nav nav-primary">
+            <ul class="nav nav-primary">
                 <li class="nav-item {{ request()->is('gap*') ? 'active' : '' }}">
                     <a href="{{ url('/gap') }}">
                         <i class="fas fa-layer-group"></i>
                         <p>GAP</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-primary">
+                <li class="nav-item {{ request()->is('introduction*') ? 'active' : '' }}">
+                    <a href="{{ url('/introduction') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <p>TOWS Introduction</p>
                     </a>
                 </li>
             </ul>
