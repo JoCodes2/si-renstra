@@ -52,6 +52,14 @@
                     </a>
                 </li>
             </ul>
+            <ul class="nav nav-primary">
+                <li class="nav-item {{ request()->is('smart*') ? 'active' : '' }}">
+                    <a href="{{ url('/smart') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <p>SMART</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
