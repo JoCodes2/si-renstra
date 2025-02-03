@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CMS\ActivityController;
 use App\Http\Controllers\CMS\CompanyProfileController;
 use App\Http\Controllers\CMS\GapController;
 use App\Http\Controllers\CMS\SwotController;
@@ -21,6 +22,10 @@ Route::get('/gap', function () {
 
 Route::get('/introduction', function () {
     return view('admin.introduction');
+});
+
+Route::get('/activity', function () {
+    return view('pages.activity');
 });
 
 Route::prefix('v1')->group(function () {
@@ -48,6 +53,15 @@ Route::prefix('v1')->group(function () {
         Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::post('/create', 'createData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+
+    // route activity
+    Route::prefix('activity')->controller(ActivityController::class)->group(function () {
+        Route::get('/{category_activity}', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
     });
 });

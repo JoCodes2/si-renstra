@@ -52,6 +52,14 @@
                     </a>
                 </li>
             </ul>
+             <ul class="nav nav-primary">
+                <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
+                    <a href="{{ url('/activity') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <p>Aktifitas</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
