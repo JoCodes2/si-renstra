@@ -45,6 +45,12 @@
                         <p>TOWS Introduction</p>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('smart*') ? 'active' : '' }}">
+                    <a href="{{ url('/smart') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <p>SMART</p>
+                    </a>
+                </li>
                  <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
                     <a href="{{ url('/activity') }}">
                         <i class="fas fa-file-alt"></i>
@@ -52,7 +58,6 @@
                     </a>
                 </li>
             </ul>
-
         </div>
     </div>
 </div>

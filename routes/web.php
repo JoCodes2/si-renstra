@@ -3,6 +3,7 @@
 use App\Http\Controllers\CMS\ActivityController;
 use App\Http\Controllers\CMS\CompanyProfileController;
 use App\Http\Controllers\CMS\GapController;
+use App\Http\Controllers\CMS\SmartController;
 use App\Http\Controllers\CMS\SwotController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::get('/introduction', function () {
 
 Route::get('/activity', function () {
     return view('pages.activity');
+});
+Route::get('/smart', function () {
+    return view('admin.smart');
 });
 
 Route::prefix('v1')->group(function () {
@@ -63,6 +67,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::post('/change-status/{id}', 'changeStatus');
+    });
+    // Routes swot
+    Route::prefix('smart')->controller(SmartController::class)->group(function () {
+        Route::get('/{category}', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
     });
 });
