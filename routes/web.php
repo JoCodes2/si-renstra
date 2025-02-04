@@ -3,6 +3,7 @@
 use App\Http\Controllers\CMS\ActivityController;
 use App\Http\Controllers\CMS\CompanyProfileController;
 use App\Http\Controllers\CMS\GapController;
+use App\Http\Controllers\CMS\MatrixController;
 use App\Http\Controllers\CMS\SmartController;
 use App\Http\Controllers\CMS\SwotController;
 use Illuminate\Support\Facades\Route;
@@ -10,8 +11,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.dashboard');
 });
-
-
 
 Route::get('/swot', function () {
     return view('admin.swot');
@@ -30,6 +29,10 @@ Route::get('/activity', function () {
 });
 Route::get('/smart', function () {
     return view('admin.smart');
+});
+
+Route::get('/matrix', function () {
+    return view('admin.matrix');
 });
 
 Route::prefix('v1')->group(function () {
@@ -70,6 +73,15 @@ Route::prefix('v1')->group(function () {
     });
     // Routes swot
     Route::prefix('smart')->controller(SmartController::class)->group(function () {
+        Route::get('/{category}', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+
+    // Routes smart
+    Route::prefix('matrix')->controller(MatrixController::class)->group(function () {
         Route::get('/{category}', 'getAllData');
         Route::post('/create', 'createData');
         Route::get('/get/{id}', 'getDataById');
