@@ -22,7 +22,6 @@
                 <th  style="background-color: rgb(254, 175, 84)">CountDown</th>
                 <th style="background-color: rgb(59, 92, 126)">Supervisor Ceklist</th>
                 <th style="background-color: rgb(59, 92, 126)">Keterangan</th>
-                <th style="background-color: rgb(59, 92, 126)">Ceklist</th>
                 <th style="background-color: rgb(59, 92, 126)">Aksi</th>
             </tr>
         </thead>

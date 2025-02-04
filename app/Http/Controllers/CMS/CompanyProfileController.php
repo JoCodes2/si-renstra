@@ -34,4 +34,18 @@ class CompanyProfileController extends Controller
     {
         return $this->companyRepo->deleteData($id);
     }
+
+    // result
+    public function createResult(Request $request)
+    {
+        return $this->companyRepo->createResult($request);
+    }
+    public function getAllResult($category)
+    {
+        return $this->companyRepo->getAllResult($category);
+    }
+    public function deleteResult($id)
+    {
+        return $this->companyRepo->deleteResult($id);
+    }
 }

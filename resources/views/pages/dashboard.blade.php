@@ -8,6 +8,15 @@
                 <h1 class="text-center fw-bold pb-2 bg-info text-white">VISI ORGANISASI</h1>
                 <div class="card p-3">
                     <x-company-profile.base-table tableId="visionCompany" buttonId="vision"></x-company-profile.base-table>
+                   <div class="d-flex">
+                        <button class="btn btn-sm btn-outline-primary mr-2" id="visionBtn" data-toggle="modal" data-target="#resultModal">
+                            <i class="fas fa-plus"></i> Tulis Hasil
+                        </button>
+                         <button class="btn btn-sm btn-outline-danger delete-result-btn" data-category="vision">
+                            <i class="fas fa-trash-alt"></i> Hapus Hasil
+                        </button>
+                    </div>
+
                     <table class="table table-bordered">
                         <tbody>
                             <tr class="table-info">
@@ -15,8 +24,8 @@
                                 <th class="text-center" style="height: 10px">Catatan</th>
                             </tr>
                             <tr>
-                                <td class="text-center">
-                                    "Menjadi organisasi terdepan dalam pemberdayaan perempuan di Indonesia yang menciptakan perubahan sosial, budaya, dan politik secara inklusif dan berkelanjutan, dengan target meningkatkan kepemimpinan perempuan di berbagai sektor strategis dalam lima tahun ke depan."
+                                <td id="visionResultTable">
+
                                 </td>
                                 <td>
                                     <ul style="list-style-type: none;">
@@ -35,6 +44,15 @@
                 <h1 class="text-center fw-bold py-2 bg-info text-white">MISI ORGANISASI</h1>
                 <div class="card p-3">
                      <x-company-profile.base-table tableId="misionCompany" buttonId="mision"></x-company-profile.base-table>
+                    <div class="d-flex">
+                        <button class="btn btn-sm btn-outline-primary mr-2" id="misionBtn" data-toggle="modal" data-target="#resultModal">
+                            <i class="fas fa fa-plus"></i>Tulis Hasil
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger delete-result-btn"  data-category="mision">
+                            <i class="fas fa-trash-alt"></i> Hapus Hasil
+                        </button>
+                    </div>
+
                     <table class="table table-bordered">
                         <tbody>
                             <tr class="table-info ">
@@ -42,14 +60,8 @@
                                 <th class="text-center" style="height: 10px;">Catatan</th>
                             </tr>
                             <tr>
-                                <td>
-                                    <ul style="list-style-type: none; padding-left: 0;">
-                                        <li>1. Meningkatkan kapasitas perempuan melalui pendidikan dan pelatihan kepemimpinan</li>
-                                        <li>2. Mengadvokasi keadilan gender dan kesetaraan hak perempuan di semua sektor</li>
-                                        <li>3. Membantu perempuan menghadapi tantangan marginalisasi budaya dan struktural</li>
-                                        <li>4. Membangun kemitraan strategis untuk mendukung pemberdayaan perempuan secara berkelanjutan</li>
-                                        <li>5. Menciptakan program inklusif berbasis kebutuhan masyarakat lokal</li>
-                                    </ul>
+                                <td id="misionResultTable">
+
                                 </td>
                                 <td>
                                     <ul style="list-style-type: none; padding-left: 0;">
@@ -67,6 +79,7 @@
         </x-base-body>
     </div>
     <x-company-profile.form-data></x-company-profile.form-data>
+    <x-company-profile.form-result></x-company-profile.form-result>
   <script type="module" src="{{ asset('js/company-profile/company-profile.controller.js') }}"></script>
 @endsection
 
