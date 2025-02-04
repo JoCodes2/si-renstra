@@ -5,7 +5,7 @@
                 <div class="avatar-sm float-left mr-2">
                     <img src="../assets/img/visionary2.png" alt="..." class="avatar-img rounded-circle">
                 </div>
-                <div class="info">
+                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
                             @auth
@@ -15,9 +15,19 @@
                                 <span class="user-level">{{ auth()->user()->agency }}</span>
                             @endauth
 
+                            <span class="caret"></span>
                         </span>
                     </a>
                     <div class="clearfix"></div>
+                    <div class="collapse in" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="{{ url('/user-settings') }}">
+                                    <span class="link-collapse">Profil Saya</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <ul class="nav nav-primary">
