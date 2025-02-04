@@ -4,6 +4,9 @@ $(document).ready(function () {
     companyProfile.getAllDataByCategory('vision', 'visionCompany');
     companyProfile.getAllDataByCategory('mision', 'misionCompany');
 
+    // result
+    companyProfile.getBrainstormingResult("vision", "visionResultTable", "visionBtn");
+    companyProfile.getBrainstormingResult("mision", "misionResultTable", "misionBtn");
     // Validasi input
     function validation() {
         $('#upsertData').validate({
@@ -97,5 +100,55 @@ $(document).ready(function () {
         $('#answer').val('');
         $('.form-control').removeClass('is-invalid').removeClass('is-valid');
         $('.error').remove();
+    });
+
+    $('#resultModal').on('hidden.bs.modal', function () {
+        $('#id').val('');
+        $('#category_brainstorming').val('');
+        $('#description').val('');
+        // Reset Summernote
+        $('#summernote').summernote('reset');
+    });
+    $('#summernote').summernote({
+        tabsize: 2,
+        height: 180,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['link']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        callbacks: {
+            onInit: function () {
+                const initialContent = $('#description').val().trim();
+                $('#summernote').summernote('code', initialContent);
+            },
+            onChange: function (contents) {
+                $('#description').val(contents);
+            }
+        }
+    });
+    $('#visionBtn').on('click', function () {
+        $('#category_brainstorming').val('vision');
+    });
+
+    $('#misionBtn').on('click', function () {
+        $('#category_brainstorming').val('mision');
+    });
+    $('#resultForm').on('submit', async function (e) {
+        e.preventDefault();
+        await companyProfile.createResult(e);
+    });
+    $(document).on('click', '.delete-result-btn', async function () {
+        const id = $(this).data('id');
+        if (!id) {
+            console.error("ID tidak ditemukan.");
+            return;
+        }
+
+        // Panggil fungsi delete dengan ID yang didapat
+        companyProfile.deleteDataResult(id);
     });
 });

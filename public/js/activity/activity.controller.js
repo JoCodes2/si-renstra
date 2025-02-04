@@ -137,6 +137,8 @@ $(document).ready(function () {
     });
     $(document).on('click', '.delete-confirm', function () {
         const id = $(this).data('id');
+        console.log(id);
+
         activity.deleteData(id);
     });
     // Event handler untuk tombol "Completed"

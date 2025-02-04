@@ -54,6 +54,10 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/get/{id}', 'getDataById');
             Route::post('/update/{id}', 'updateData');
             Route::delete('/delete/{id}', 'deleteData');
+
+            Route::post('/result', 'createResult');
+            Route::get('/result/{category}', 'getAllResult');
+            Route::delete('/delete/result/{id}', 'deleteResult');
         });
 
         // Routes swot
@@ -80,6 +84,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::post('/create', 'createData');
             Route::get('/get/{id}', 'getDataById');
             Route::post('/update/{id}', 'updateData');
+            Route::delete('/delete/{id}', 'deleteData');
             Route::post('/change-status/{id}', 'changeStatus');
         });
         // Routes swot

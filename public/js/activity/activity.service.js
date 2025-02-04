@@ -91,21 +91,27 @@ class activityService {
                     </td>
                     <td>${item.description}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-success btn-xs btn-completed" data-id="${item.id}" >
-                            <i class="fas fa-check"></i>
-                        </button>
-                        <button type="button" class="btn-on-progress btn btn-outline-warning btn-xs" data-id="${item.id}" >
-                          <i class="fas fa-play-circle"></i>
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary btn-xs dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item btn-completed"  data-id="${item.id}">
+                                    <i class="fas fa-check text-success"></i> Completed
+                                </a>
+                                <a class="dropdown-item btn-on-progress"  data-id="${item.id}">
+                                    <i class="fas fa-play-circle text-warning"></i> On Progress
+                                </a>
+                                <a class="dropdown-item edit-modal"  data-id="${item.id}">
+                                    <i class="fas fa-edit text-primary"></i> Edit
+                                </a>
+                                <a class="dropdown-item delete-confirm"  data-id="${item.id}">
+                                    <i class="fas fa-trash-alt text-danger"></i> Delete
+                                </a>
+                            </div>
+                        </div>
                     </td>
-                    <td class="text-center">
-                        <button class="btn btn-outline-primary btn-xs edit-modal" data-id="${item.id}" >
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" class="delete-confirm btn btn-outline-danger btn-xs" data-id="${item.id}" >
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
+
                 </tr>
                 `;
 
