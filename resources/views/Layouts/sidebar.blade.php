@@ -55,8 +55,17 @@
             <ul class="nav nav-primary">
                 <li class="nav-item {{ request()->is('smart*') ? 'active' : '' }}">
                     <a href="{{ url('/smart') }}">
-                        <i class="fas fa-file-alt"></i>
+                        <i class="fas fa-lightbulb"></i>
                         <p>SMART</p>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-primary">
+                <li class="nav-item {{ request()->is('matrix') ? 'active' : '' }}">
+                    <a href="{{ url('/matrix') }}">
+                        <i class="fas fa-book"></i>
+                        <p>MATRIX</p>
                     </a>
                 </li>
             </ul>

@@ -7,7 +7,7 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h3 class="m-0 font-weight-bold"><i class="fas fa-box pr-2"></i> TOWS</h3>
                 </div>
-                <h1 class="text-center fw-bold pb-2 bg-info text-white">TOWS Introduction</h1>
+                <h1 class="text-center fw-bold pb-2 bg-info text-white">TOWS INTRODUCTION</h1>
 
             </div>
         </div>
