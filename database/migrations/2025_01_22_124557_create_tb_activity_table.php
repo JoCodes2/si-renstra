@@ -22,9 +22,8 @@ return new class extends Migration
             $table->integer('realization');
             $table->decimal('achievement', 5, 2);
             $table->date('deadline');
-            $table->integer('count_down');
             $table->enum('status_activity', ['completed', 'on-progress', 'not-completed']);
-            $table->date('completion_date')->nullable();
+            $table->enum('category_activity', ['internal', 'economic-empowerment', 'partnership ']);
             $table->text('description')->nullable();
             $table->timestamps();
         });
