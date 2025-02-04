@@ -6,6 +6,7 @@ use App\Http\Requests\ActivityRequest;
 use App\Interfaces\ActivityInterfaces;
 use App\Models\ActivityModel;
 use App\Traits\HttpResponseTraits;
+use Illuminate\Http\Request;
 
 class ActivityRepositories implements ActivityInterfaces
 {
@@ -38,14 +39,59 @@ class ActivityRepositories implements ActivityInterfaces
             $data->achievement = $request->input('achievement') ?? 0;
             $data->deadline = $request->input('deadline');
             $data->status_activity = $request->input('status_activity') ?? 'not-completed';
-            $data->description = $request->input('description');
+            $data->description = $request->input('description') ?? 'writing now..';
             $data->save();
             return $this->success($data);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
         }
     }
-    public function getDataById($id) {}
-    public function updateData(ActivityRequest $request, $id) {}
-    public function deleteData($id) {}
+    public function getDataById($id)
+    {
+        $data = $this->acRepo::find($id);
+        if (!$data) {
+            return $this->dataNotFound();
+        }
+        return $this->success($data);
+    }
+    public function updateData(ActivityRequest $request, $id)
+    {
+        try {
+            $data = $this->acRepo::find($id);
+            if (!$data) {
+                return $this->dataNotFound();
+            }
+            $data->update($request->all());
+            return $this->success($data);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
+        }
+    }
+    public function deleteData($id)
+    {
+        try {
+            $data = $this->acRepo::find($id);
+            if (!$data) {
+                return $this->dataNotFound();
+            }
+            $data->delete();
+            return $this->success();
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
+        }
+    }
+    public function cangeStatus(Request $request, $id)
+    {
+        try {
+            $data = $this->acRepo::find($id);
+            if (!$data) {
+                return $this->dataNotFound();
+            }
+            $data->status_activity = $request->input('status_activity');
+            $data->save();
+            return $this->success($data);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
+        }
+    }
 }

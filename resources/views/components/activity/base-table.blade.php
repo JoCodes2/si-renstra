@@ -2,7 +2,7 @@
 <div class="table-responsive">
    <div class="py-3 d-flex justify-content-between align-items-center">
         <h4 class="m-0 font-weight-bold">Monitoring Program Kerja</h4>
-        <button class="btn btn-outline-primary" id="{{ $buttonId }}" data-toggle="modal" data-target="#activityModal">
+        <button class="btn btn-outline-primary" id="{{ $buttonId }}" >
             <i class="fas fa-plus pr-2 text-center"></i>Buat Program Kerja
         </button>
     </div>

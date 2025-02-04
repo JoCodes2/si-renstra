@@ -32,7 +32,6 @@ class ActivityRequest extends FormRequest
             'pic' => 'required',
             'deadline' => 'required',
             'category_activity' => 'required',
-            'description' => 'required',
         ];
     }
 

@@ -34,4 +34,8 @@ class ActivityController extends Controller
     {
         return $this->acRepo->deleteData($id);
     }
+    public function changeStatus(Request $request, $id)
+    {
+        return $this->acRepo->cangeStatus($request, $id);
+    }
 }

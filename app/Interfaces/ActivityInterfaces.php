@@ -4,6 +4,7 @@
 namespace App\Interfaces;
 
 use App\Http\Requests\ActivityRequest;
+use Illuminate\Http\Request;
 
 interface ActivityInterfaces
 {
@@ -12,4 +13,5 @@ interface ActivityInterfaces
     public function getDataById($id);
     public function updateData(ActivityRequest $request, $id);
     public function deleteData($id);
+    public function cangeStatus(Request $request, $id);
 }

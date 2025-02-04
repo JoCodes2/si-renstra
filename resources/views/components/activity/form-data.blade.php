@@ -26,9 +26,9 @@
                                     <label>Kategori Aktivitas</label>
                                     <select class="form-control" name="category_activity" id="category_activity" >
                                         <option value="" selected disabled>-- Pilih --</option>
-                                        <option value="internal"></option>
-                                        <option value="economic-empowerment"></option>
-                                        <option value="partnership"></option>
+                                        <option value="partnership">Program dan Kemitraan</option>
+                                        <option value="internal">Internal</option>
+                                        <option value="economic-empowerment">Pemberdayaan & Kemitraan</option>
                                     </select>
                                 </div>
 
@@ -56,16 +56,16 @@
                             <div class="col-md-6">
                                 <div class="form-group fill modal-show-validation">
                                     <label>Target</label>
-                                    <input id="target" name="target" type="text" class="form-control" placeholder="Masukkan target..." autocomplete="off">
+                                    <input id="target" name="target" type="text" class="form-control" placeholder="0" autocomplete="off">
                                 </div>
                                  <div class="form-group fill modal-show-validation">
                                     <label>Realisasi</label>
-                                    <input id="realization" name="realization" type="text" class="form-control" placeholder="Masukkan realisasi..." autocomplete="off">
+                                    <input id="realization" name="realization" type="text" class="form-control" placeholder="0" autocomplete="off">
                                 </div>
-
+                                <input type="hidden" id="hidden_achievement" name="achievement" >
                                 <div class="form-group fill modal-show-validation">
                                     <label>Pencapaian</label>
-                                    <input id="achievement" name="achievement" type="text" class="form-control" placeholder="Masukkan pencapaian..." autocomplete="off">
+                                    <input id="achievement" name="achievement" type="text" class="form-control" placeholder="0" autocomplete="off" disabled>
                                 </div>
 
                                 <div class="form-group fill modal-show-validation">
@@ -75,7 +75,8 @@
 
                                 <div class="form-group fill modal-show-validation">
                                     <label>Keterangan</label>
-                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Masukkan deskripsi..."></textarea>
+                                    <textarea id="description" name="description" class="form-control" rows="3" style="display: none"></textarea>
+                                    <div id="summernote" ></div>
                                 </div>
                             </div>
                         </div>

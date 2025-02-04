@@ -27,39 +27,32 @@
                         <p>Profil Organisasi</p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav nav-primary">
                 <li class="nav-item {{ request()->is('swot*') ? 'active' : '' }}">
                     <a href="{{ url('/swot') }}">
                         <i class="fas fa-crop-alt"></i>
                         <p>SWOT</p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav nav-primary">
                 <li class="nav-item {{ request()->is('gap*') ? 'active' : '' }}">
                     <a href="{{ url('/gap') }}">
                         <i class="fas fa-layer-group"></i>
                         <p>GAP</p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav nav-primary">
-                <li class="nav-item {{ request()->is('introduction*') ? 'active' : '' }}">
+                 <li class="nav-item {{ request()->is('introduction*') ? 'active' : '' }}">
                     <a href="{{ url('/introduction') }}">
                         <i class="fas fa-file-alt"></i>
                         <p>TOWS Introduction</p>
                     </a>
                 </li>
-            </ul>
-             <ul class="nav nav-primary">
-                <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
+                 <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
                     <a href="{{ url('/activity') }}">
                         <i class="fas fa-file-alt"></i>
                         <p>Aktifitas</p>
                     </a>
                 </li>
             </ul>
+
         </div>
     </div>
 </div>

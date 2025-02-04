@@ -14,7 +14,12 @@ class activityService {
     }
     async getAllData(category_activity, tableId) {
         try {
+            const responseMisi = await this.ajaxRequest(`${appUrl}/v1/company-profile/mision`, 'GET');
+            const mision = responseMisi.data;
+            this.misionDropdown(mision);
+
             const responseData = await this.ajaxRequest(`${appUrl}/v1/activity/${category_activity}`, 'GET');
+
 
             let tableBody = '';
 
@@ -89,8 +94,8 @@ class activityService {
                         <button class="btn btn-outline-success btn-xs btn-completed" data-id="${item.id}" >
                             <i class="fas fa-check"></i>
                         </button>
-                        <button type="button" class="btn-not-completed btn btn-outline-danger btn-xs" data-id="${item.id}" >
-                            <i class="fas fa-times"></i>
+                        <button type="button" class="btn-on-progress btn btn-outline-warning btn-xs" data-id="${item.id}" >
+                          <i class="fas fa-play-circle"></i>
                         </button>
                     </td>
                     <td class="text-center">
@@ -129,12 +134,12 @@ class activityService {
 
             if (checkingEdit()) {
                 const id = $('#id').val();
-                const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/update/${id}`, 'POST', formData);
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/activity/update/${id}`, 'POST', formData);
 
                 if (responseData.code === 200) {
                     successAlert().then(() => {
                         realoadBrowser();
-                        $('#companyProfileModal').modal('hide');
+                        $('#activityModal').modal('hide');
                     });
                 } else if (responseData.code === 422) {
                     warningAlert();
@@ -143,13 +148,13 @@ class activityService {
                 }
             } else {
                 submitButton.attr('disabled', true);
-                const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/create`, 'POST', formData);
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/activity/create`, 'POST', formData);
                 console.log(responseData);
 
                 if (responseData.code === 200) {
                     successAlert().then(() => {
                         realoadBrowser();
-                        $('#companyProfileModal').modal('hide');
+                        $('#activityModal').modal('hide');
                     });
                 } else if (responseData.code === 422) {
                     warningAlert();
@@ -165,32 +170,89 @@ class activityService {
         }
     }
 
+    misionDropdown(mision) {
+        const categorySelect = $('#id_company_profile');
+        categorySelect.empty();
+        categorySelect.append('<option value="" selected disabled hidden>- Pilih -</option>');
+
+        $.each(mision, function (index, item) {
+            categorySelect.append(`<option value="${item.id}">${item.answer}</option>`);
+        });
+    }
+
     async getDataById(id, checkingEdit) {
         try {
-            const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/get/${id}`, 'GET');
+            const responseData = await this.ajaxRequest(`${appUrl}/v1/activity/get/${id}`, 'GET');
+            console.log(responseData);
+            const achievement = parseFloat(responseData.data.achievement);
+
+            const achievementFormat = isNaN(achievement) ? 0 : achievement.toFixed(0);
+            // Isi data ke dalam modal form
             $('#id').val(responseData.data.id);
-            $('#category').val(responseData.data.category);
-            $('#question').val(responseData.data.question);
-            $('#questionShow').val(responseData.data.question);
-            $('#answer').val(responseData.data.answer || '').prop('disabled', false);
+            $('#id_company_profile').val(responseData.data.id_company_profile);
+            $('#category_activity').val(responseData.data.category_activity);
+            $('#activity_name').val(responseData.data.activity_name);
+            $('#supervisor_name').val(responseData.data.supervisor_name);
+            $('#devisi').val(responseData.data.devisi);
+            $('#pic').val(responseData.data.pic);
+            $('#target').val(responseData.data.target);
+            $('#realization').val(responseData.data.realization);
+            $('#hidden_achievement').val(responseData.data.achievement);
+            $('#achievement').val(achievementFormat + '%');
+            $('#deadline').val(responseData.data.deadline);
+
+            // Isi Summernote
+            $('#description').val(responseData.data.description);
+            $('#summernote').summernote('code', responseData.data.description);
 
             $('#upsertData').validate().resetForm();
-            $('#questionForm').hide(true);
-            $('#questionText').show(true);
-            $('#companyProfileModal').modal('show');
+
+            $('#activityModal').modal('show');
+
             checkingEdit();
         } catch (error) {
             console.log(error);
         }
     }
 
+    async ajaxRequestStatus(url, method, data = null) {
+        return $.ajax({
+            url: url,
+            type: method,
+            data: data ? JSON.stringify(data) : null,
+            contentType: 'application/json',
+            dataType: 'json'
+        });
+    }
 
+    async updateActivityStatus(id, status_activity) {
+        try {
+            const result = await confirmDeleteAlert();
+            if (result.isConfirmed) {
+                const responseData = await this.ajaxRequestStatus(`${appUrl}/v1/activity/change-status/${id}`, 'POST', {
+                    status_activity: status_activity
+                });
+
+                console.log(responseData);
+                if (responseData.code === 200) {
+                    await successAlert().then(() => {
+                        realoadBrowser();
+                    });
+                } else {
+                    errorAlert();
+                }
+            }
+        } catch (error) {
+            console.error("Error updating status:", error);
+            errorAlert();
+        }
+    }
 
     async deleteData(id) {
         try {
             const result = await confirmDeleteAlert();
             if (result.isConfirmed) {
-                const responseData = await this.ajaxRequest(`${appUrl}/v1/company-profile/delete/${id}`, 'DELETE');
+                const responseData = await this.ajaxRequest(`${appUrl}/v1/activity/delete/${id}`, 'DELETE');
                 console.log(responseData);
                 if (responseData.code === 200) {
                     await successAlert().then(() => {
