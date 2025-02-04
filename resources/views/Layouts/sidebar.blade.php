@@ -3,7 +3,8 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="../assets/img/visionary2.png" alt="..." class="avatar-img rounded-circle">
+                    <div class="avatar-img rounded-circle" id="avatarUsersSidebar">
+                    </div>
                 </div>
                  <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -12,7 +13,7 @@
                                 {{ auth()->user()->name }}
                             @endauth
                             @auth
-                                <span class="user-level">{{ auth()->user()->agency }}</span>
+                                <span class="user-level">{{ auth()->user()->position }}</span>
                             @endauth
 
                             <span class="caret"></span>
@@ -22,7 +23,7 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="{{ url('/user-settings') }}">
+                                <a href="{{ url('/user-setting') }}">
                                     <span class="link-collapse">Profil Saya</span>
                                 </a>
                             </li>
@@ -69,7 +70,7 @@
                 </li>
                  <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
                     <a href="{{ url('/activity') }}">
-                        <i class="fas fa-file-alt"></i>
+                       <i class="fas fa-tasks"></i>
                         <p>Aktifitas</p>
                     </a>
                 </li>

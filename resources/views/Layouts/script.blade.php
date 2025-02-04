@@ -66,7 +66,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-        const urlLogout = 'v1/logout'
+        const urlLogout = `v1/logout`
         $(document).ready(function() {
             $('#iconLogout').click(function(e) {
                 Swal.fire({
@@ -105,4 +105,45 @@
                 });
             });
         });
+    </script>
+        <script>
+        $(document).ready(function(){
+
+            function setAvatarSidebar(name) {
+                let avatarElement = $('#avatarUsersSidebar');
+                let initials = getInitials(name);
+
+                avatarElement.css({
+                    'background-color': '#F0AB48',
+                    'color': '#ffffff',
+                    'font-size': '21.6px',
+                    'line-height': '25.92px',
+                    'text-align': 'center',
+                    'display': 'flex',
+                    'align-items': 'center',
+                    'justify-content': 'center',
+                });
+
+                avatarElement.text(initials);
+            }
+            // set initials name users
+            function getInitials(name) {
+                return name.charAt(0).toUpperCase();
+            }
+            // get data
+            function fetchDataAndUpdate() {
+                $.ajax({
+                    url: `${appUrl}/v1/users/`,
+                    method: 'GET',
+                    success: function (response) {
+                        let nameUser = response.data.name;
+                        setAvatarSidebar(nameUser);
+                    },
+                    error: function (error) {
+                        console.error('Error fetching user data:', error);
+                    }
+                });
+            }
+            fetchDataAndUpdate();
+        })
     </script>

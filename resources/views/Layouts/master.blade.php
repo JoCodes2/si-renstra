@@ -8,7 +8,8 @@
     <script>
         let appUrl = '{{ env('APP_URL') }}';
     </script>
-    <title>sps</title>
+    <title>Visionery Apps</title>
+    <link rel="icon" href="{{ asset('Image/3.png') }}" type="image/png"/>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     @include('Layouts.style')
 </head>
