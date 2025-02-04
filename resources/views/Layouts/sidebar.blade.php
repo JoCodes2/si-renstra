@@ -6,7 +6,7 @@
                     <div class="avatar-img rounded-circle" id="avatarUsersSidebar">
                     </div>
                 </div>
-                 <div class="info">
+                <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
                             @auth
@@ -50,12 +50,6 @@
                         <p>GAP</p>
                     </a>
                 </li>
-                 <li class="nav-item {{ request()->is('introduction*') ? 'active' : '' }}">
-                    <a href="{{ url('/introduction') }}">
-                        <i class="fas fa-file-alt"></i>
-                        <p>TOWS Introduction</p>
-                    </a>
-                </li>
                 <li class="nav-item {{ request()->is('smart*') ? 'active' : '' }}">
                     <a href="{{ url('/smart') }}">
                         <i class="fas fa-lightbulb"></i>
@@ -65,12 +59,12 @@
                 <li class="nav-item {{ request()->is('matrix*') ? 'active' : '' }}">
                     <a href="{{ url('/matrix') }}">
                         <i class="fas fa-book"></i>
-                        <p>MATRIX</p>
+                        <p>TOWS Introduction</p>
                     </a>
                 </li>
-                 <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('activity*') ? 'active' : '' }}">
                     <a href="{{ url('/activity') }}">
-                       <i class="fas fa-tasks"></i>
+                        <i class="fas fa-tasks"></i>
                         <p>Aktifitas</p>
                     </a>
                 </li>

@@ -28,9 +28,6 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.gap');
     });
 
-    Route::get('/introduction', function () {
-        return view('admin.introduction');
-    });
 
     Route::get('/activity', function () {
         return view('pages.activity');
